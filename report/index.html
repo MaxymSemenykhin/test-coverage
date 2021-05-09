@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="datasets.js"></script>
+</head>
+<body>
+<a href="./jest/index.html">details</a>
+
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+
+<script>
+
+  const data = {
+    labels: labels,
+    datasets: datasets
+  };
+
+  const config = {
+    type: 'line',
+    data,
+    options: {}
+  };
+
+
+  new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+</script>
+
+</body>
+</html>

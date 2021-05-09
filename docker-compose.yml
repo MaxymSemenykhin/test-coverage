@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+
+  Coverage-mysql:
+    container_name: Coverage-mysql
+    image: mysql:5.7
+#    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: 'сoverage'
+      MYSQL_USER: 'сoverage-user'
+      MYSQL_PASSWORD: 'Rm9tYEAmjjAbDLXu884hmUfCoverageHuKVebwEKVCJ6C5Uw8nAGKu6aC'
+      MYSQL_ROOT_PASSWORD: 'jhJCst2VWWD5FKBTpnyCoveragepCQY5RebnD5rAhMfsRqUQeqg3VX4US'
+#    volumes:
+#      - ./mysql/сoverage/data:/var/lib/mysql
+
+  Coverage-php:
+    container_name: Coverage-pvp
+    build:
+      dockerfile: Dockerfile-debian
+      context: './'
+      args:
+        - PHP_BASE_IMAGE_VERSION
+        - X_LEGACY_GD_LIB
+        - PECL_XDEBUG_INSTALL_SUFFIX
+        - PECL_MONGODB_INSTALL_SUFFIX
+    image: ${PHP_IMAGE_NAME}:${PHP_BASE_IMAGE_VERSION}${PHP_IMAGE_VERSION_SUFFIX}
+
+#    restart: always
+    volumes:
+      - ./yii:/app
